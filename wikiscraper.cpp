@@ -27,8 +27,7 @@ using std::unordered_map;   using std::unordered_set;
 // BEGIN STUDENT CODE HERE
 bool valid_wikilink(const string& link) {
     // replace these lines!
-    (void) link;
-    throw std::invalid_argument("Not implemented yet.\n");
+    return link.find('#') == std::string::npos && link.find(':') == std::string::npos;
 }
 // END STUDENT CODE HERE
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -52,8 +51,11 @@ unordered_set<string> findWikiLinks(const string& inp) {
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         // BEGIN STUDENT CODE HERE
-        // Please delete this line when you start working!
-        throw std::invalid_argument("Not implemented yet.\n");
+        auto next = std::search(url_start, end, delim.begin(), delim.end());
+        if(next == end){
+            break;
+        }
+
         // END STUDENT CODE HERE
         ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -65,8 +67,9 @@ unordered_set<string> findWikiLinks(const string& inp) {
         // Estimated length: 1 lines
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////
-        // BEGIN STUDENT CODE HERE (delete/edit this line)
-        auto url_end = url_start;
+        // BEGIN STUDENT CODE HERE (delete/edit this line
+        auto url_end = std::find(next,end,"\"");
+
         // END STUDENT CODE HERE
         ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -74,10 +77,9 @@ unordered_set<string> findWikiLinks(const string& inp) {
         // Last exercise of this function! Create a string from the two iterators (url_start and url_end) above
         // using a string constructor. Make sure you start the string AFTER the delimiter you found in task 5!
         // Estimated length: 1 lines
-        
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         // BEGIN STUDENT CODE HERE (delete/edit this line)
-        string link;
+        string link(++url_start,url_end);
         // END STUDENT CODE HERE
         ///////////////////////////////////////////////////////////////////////////////////////////////////
 
