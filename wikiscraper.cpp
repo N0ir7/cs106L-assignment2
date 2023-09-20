@@ -27,7 +27,9 @@ using std::unordered_map;   using std::unordered_set;
 // BEGIN STUDENT CODE HERE
 bool valid_wikilink(const string& link) {
     // replace these lines!
-    return link.find('#') == std::string::npos && link.find(':') == std::string::npos;
+    std::string filter = "#:";
+    return std::all_of(filter.begin(),filter.end(),[link](char x){return link.find(x)==std::string::npos;});
+//    return link.find('#') == std::string::npos && link.find(':') == std::string::npos;
 }
 // END STUDENT CODE HERE
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -55,7 +57,7 @@ unordered_set<string> findWikiLinks(const string& inp) {
         if(next == end){
             break;
         }
-
+        std::advance(next,delim.length());
         // END STUDENT CODE HERE
         ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -68,7 +70,7 @@ unordered_set<string> findWikiLinks(const string& inp) {
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         // BEGIN STUDENT CODE HERE (delete/edit this line
-        auto url_end = std::find(next,end,"\"");
+        auto url_end = std::find(next,end,'\"');
 
         // END STUDENT CODE HERE
         ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -79,7 +81,8 @@ unordered_set<string> findWikiLinks(const string& inp) {
         // Estimated length: 1 lines
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         // BEGIN STUDENT CODE HERE (delete/edit this line)
-        string link(++url_start,url_end);
+        string link(next,url_end);
+
         // END STUDENT CODE HERE
         ///////////////////////////////////////////////////////////////////////////////////////////////////
 

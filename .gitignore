@@ -3,4 +3,5 @@ build/
 build_and_run.sh
 CMakeLists.txt
 .idea/
-cmake-build-debug/
+cmake-build-vcpkg/
+my_test/

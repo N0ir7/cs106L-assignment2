@@ -19,7 +19,7 @@ import sys
 
 # compile test script and wikiscraper for files with cmake;
 subprocess.run(["sh", "-c", "cd build; ./build-test.sh; cd .."], capture_output=False,
-                timeout=10, encoding=locale.getpreferredencoding())
+                timeout=60, encoding=locale.getpreferredencoding())
 
 if len(sys.argv) == 2:
     f = open(sys.argv[2], newline='\n')
