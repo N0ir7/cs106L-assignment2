@@ -40,10 +40,9 @@ using std::unordered_set;   using std::cin;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // BEGIN STUDENT CODE HERE
 int numCommonLinks(const unordered_set<string>& curr_set, const unordered_set<string>& target_set) {
-    // replace all of these lines!
     int cnt = 0;
-    for(const auto& elem : curr_set){
-        cnt += target_set.find(elem) != target_set.end();
+    for(const auto& elem : target_set){
+        cnt += curr_set.find(elem) != curr_set.end();
     }
     return cnt;
 }
@@ -74,9 +73,7 @@ vector<string> findWikiLadder(const string& start_page, const string& end_page) 
         if(right.empty()){
             return false;
         }
-        std::unordered_set<std::string> l_set = w.getLinkSet(left.back());
-        std::unordered_set<std::string> r_set = w.getLinkSet(right.back());
-        return numCommonLinks(l_set,target_set) < numCommonLinks(r_set,target_set); // replace this line! make sure to use numCommonLinks.
+        return numCommonLinks(w.getLinkSet(left.back()),target_set) < numCommonLinks(w.getLinkSet(right.back()),target_set);
     };
     // END STUDENT CODE HERE
     ///////////////////////////////////////////////////////////////////////////////////////////////////
